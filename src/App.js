@@ -2,16 +2,22 @@ import './App.css';
 import Navbar from './components/Navbar';
 import DetailSong from './components/DetailSong';
 import ListSong from './components/ListSong';
+import { Songs } from './Context';
+import DataSongs from './data/songs.json'
+import Playing from './components/Playing';
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <div className='grid grid-cols-3 bg-slate-700 h-screen-navbar-player'>
-        {/*span 1 */}
-        <DetailSong />
-        {/*span 2 */}
-        <ListSong />
-      </div>
+      <Songs.Provider value={{DataSongs}} >
+        <Navbar />
+        <div className='grid grid-cols-3 bg-slate-700 h-screen-navbar-player overflow-hidden'>
+          {/*span 1 */}
+          <DetailSong />
+          {/*span 2 */}
+          <ListSong />
+        </div>
+        <Playing/>
+      </Songs.Provider>
     </div>
   );
 }
